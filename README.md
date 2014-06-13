@@ -3,7 +3,7 @@
 ## index.html
 
 ```html
-<script src="amd.js"></script>
+<script src="md.js"></script>
 
 <script>
 //define a module
