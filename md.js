@@ -1,5 +1,5 @@
 (function(global){
-    var factorys = {};
+    var factories = {};
     var modules = {};
     var run = function(factory){
         var module = {};
@@ -11,7 +11,7 @@
         switch (typeof id){
             case 'string':
                 if(typeof factory === 'function'){
-                    factorys[id] = factory;
+                    factories[id] = factory;
                 } else {
                     modules[id] = factory;
                 }
@@ -24,8 +24,8 @@
     var require = function(id){
         if(modules.hasOwnProperty(id)){
             return modules[id];
-        } else if(factorys.hasOwnProperty(id)) {
-            return modules[id] = run(factorys[id]);
+        } else if(factories.hasOwnProperty(id)) {
+            return modules[id] = run(factories[id]);
         } else {
             throw 'undefined module [' + id + ']';
         }
