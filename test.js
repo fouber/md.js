@@ -23,7 +23,7 @@ describe('define', function(){
             assert.equal('world', b.name);
         });
     });
-    it('no factory', function(){
+    it('without factory', function(){
         define('c', '123');
         define('d', 123);
         define('e', [1,2,3]);
