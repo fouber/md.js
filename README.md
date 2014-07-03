@@ -1,6 +1,11 @@
-# Usage
+# A very simple module definition framework
+--------------
 
-## index.html
+[![Build Status](https://travis-ci.org/fouber/md.js.svg?branch=master)](https://travis-ci.org/fouber/md.js)
+
+## Usage
+
+### index.html
 
 ```html
 <script src="md.js"></script>
