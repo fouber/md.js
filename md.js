@@ -1,30 +1,57 @@
 (function(global){
-    var factorys = {};
+    //factories cache
+    var factories = {};
+    //modules cache
     var modules = {};
+    //defined cache
+    var defined = {};
+    
+    /**
+     * define(id, factory), define(factory)
+     *
+     * @param {String|Function} id
+     * @param {Function|undefined} factory
+     */
     global.define = function(id, factory){
         switch (typeof id){
             case 'string':
-                if(typeof factory === 'function'){
-                    factorys[id] = factory;
+                if(defined.hasOwnProperty(id)){
+                    throw new Error('cannot redeclare module [' + id + ']');
                 } else {
-                    modules[id] = factory;
+                    if(typeof factory === 'function'){
+                        factories[id] = factory;
+                    } else {
+                        modules[id] = factory;
+                    }
                 }
+                defined[id] = true;
                 break;
             case 'function':
                 id(require);
                 break;
         }
     };
+    
+    /**
+     * require(id)
+     */
     var require = function(id){
-        if(modules.hasOwnProperty(id)){
+        if(modules.hasOwnProperty(id)){    //if cached
             return modules[id];
-        } else if(factorys.hasOwnProperty(id)) {
-            var module = {};
-            var exports = module.exports = modules[id] = {};
+        } else if(factories.hasOwnProperty(id)) {    //has factory
+            var module  = { exports: {} },
+                factory = factories[id],
+                exports = modules[id]
+                        = module.exports;
             exports = factory(require, exports, module);
-            return (modules[id] = (typeof exports === 'undefined') ? module.exports : exports);
-        } else {
-            throw 'undefined module [' + id + ']';
+            if(typeof exports === 'undefined'){
+                modules[id] = exports = module.exports;
+            } else {
+                modules[id] = exports;
+            }
+            return exports;
+        } else {    //undefined module
+            throw new Error('undefined module [' + id + ']');
         }
     };
 })(window);

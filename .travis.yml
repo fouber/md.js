@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+- '0.10'
+env:
+    global:
+    - PATH: node_modules/.bin/:$PATH
+before_install:
+- mkdir node_modules
+install:
+- npm install mocha
+script:
+- mocha -R spec
+branches:
+    only:
+    - master
