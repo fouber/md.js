@@ -1,5 +1,4 @@
-# A very simple module definition framework
---------------
+# Module definition framework
 
 [![Build Status](https://travis-ci.org/fouber/md.js.svg?branch=master)](https://travis-ci.org/fouber/md.js)
 
