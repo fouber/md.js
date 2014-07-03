@@ -34,6 +34,8 @@
     
     /**
      * require(id)
+     * @param {String} id
+     * @returns {*}
      */
     var require = function(id){
         if(modules.hasOwnProperty(id)){    //if cached
