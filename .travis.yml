@@ -3,7 +3,7 @@ node_js:
 - '0.10'
 env:
     global:
-    - PATH: node_modules/.bin/:$PATH
+    - PATH: ./node_modules/.bin/:$PATH
 before_install:
 - mkdir node_modules
 install:
