@@ -33,7 +33,7 @@ describe('define', function(){
             assert.deepEqual([1,2,3], require('e'));
         });
     });
-    it('cycles', function(){
+    it('cyclic module dependencies', function(){
         define('f', function(require, exports){
             exports.name = 'f';
             var g = require('g');
@@ -58,12 +58,12 @@ describe('define', function(){
             assert.strictEqual('g+', g.name);
         });
     });
-    it('redeclare', function(){
+    it('redeclare module', function(){
         assert.throws(function(){
             define('a', 123);
         }, Error);
     });
-    it('undefined', function(){
+    it('require undefined module', function(){
         define(function(require){
             assert.throws(function(){
                 require('z');
