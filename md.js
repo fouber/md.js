@@ -34,6 +34,7 @@
     
     /**
      * require(id)
+     * 
      * @param {String} id
      * @returns {*}
      */
