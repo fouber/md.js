@@ -46,6 +46,11 @@
                 factory = factories[id],
                 exports = modules[id]
                         = module.exports;
+            if(typeof Object.defineProperty === 'function'){
+                Object.defineProperty(module, 'id', id);
+            } else {
+                module.id = id;
+            }
             exports = factory(require, exports, module);
             if(typeof exports === 'undefined'){
                 modules[id] = exports = module.exports;
