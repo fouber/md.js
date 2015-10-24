@@ -47,7 +47,9 @@
                 exports = modules[id]
                         = module.exports;
             if(typeof Object.defineProperty === 'function'){
-                Object.defineProperty(module, 'id', id);
+                Object.defineProperty(module, 'id', {
+                    value: id
+                });
             } else {
                 module.id = id;
             }
